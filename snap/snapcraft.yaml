@@ -1,0 +1,89 @@
+name: argos-translate
+title: Argos Translate
+base: core18 
+version: '1.0.3' 
+license: MIT
+summary: Offline neural machine translation app
+description: |
+  [Code](https://github.com/argosopentech/argos-translate) | [Website](https://www.argosopentech.com)
+
+  Open-source offline neural machine translation app that allows installing packages to support new languages.
+  
+  Automatically installs and connects to `argos-translate-base-langs` snap to support translations between Arabic, Chinese, English, French, Russian, and Spanish.
+  
+icon: snap/gui/icon.png
+compression: lzo
+grade: stable
+confinement: strict
+
+apps:
+  argos-translate: 
+    adapter: full
+    command: desktop-launch $SNAP/bin/argos-translate
+    environment:
+      DISABLE_WAYLAND: 1
+    plugs:
+      - desktop
+      - desktop-legacy
+      - opengl
+      - wayland
+      - x11
+       
+# From snapcraft-desktop-helpers
+# https://github.com/ubuntu/snapcraft-desktop-helpers
+parts:
+  desktop-qt5:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: qt
+    plugin: make
+    make-parameters: ["FLAVOR=qt5"]
+    build-packages:
+      - build-essential
+      - qtbase5-dev
+      - dpkg-dev
+    stage-packages:
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - adwaita-icon-theme
+      - gnome-themes-standard
+      - shared-mime-info
+      - libqt5gui5
+      - libgdk-pixbuf2.0-0
+      - libqt5svg5 # for loading icon themes which are svg
+      - try: [appmenu-qt5] # not available on core18
+      - locales-all
+      - xdg-user-dirs
+      - fcitx-frontend-qt5
+
+  argos-translate:
+    after: [desktop-qt5]
+    plugin: python
+    python-version: python3
+    source: .
+    # Based on ericoporto/pyqthelloworld
+    # https://github.com/ericoporto/pyqthelloworld
+    build-packages:
+      - python3
+      - python3-pyqt5
+      - execstack
+    stage-packages:
+      - python3
+      - python3-pyqt5
+      - libc-bin
+      - locales
+
+  model-files:
+    source: packages
+    plugin: dump
+    organize:
+      '*' : packages/
+
+plugs:
+  argos-packages:
+    interface: content
+    content: argos-packages
+    target: $SNAP
+    default-provider: argos-translate-base-langs
+
