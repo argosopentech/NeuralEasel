@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Argos Translate
-Exec=argos-translate
+Name=NeuralEasel
+Exec=neuraleasel
 Icon=${SNAP}/meta/gui/icon.png
 Type=Application

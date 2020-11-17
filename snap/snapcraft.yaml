@@ -1,25 +1,19 @@
-name: argos-translate
-title: Argos Translate
+name: neuraleasel
+title: NeuralEasel
 base: core18 
-version: '1.0.3' 
+version: '0.1' 
 license: MIT
-summary: Offline neural machine translation app
+summary: Open-source DeepDream generator
 description: |
-  [Code](https://github.com/argosopentech/argos-translate) | [Website](https://www.argosopentech.com)
-
-  Open-source offline neural machine translation app that allows installing packages to support new languages.
-  
-  Automatically installs and connects to `argos-translate-base-langs` snap to support translations between Arabic, Chinese, English, French, Russian, and Spanish.
-  
+  Easily generate your own deep dream images from a GUI.
 icon: snap/gui/icon.png
 compression: lzo
-grade: stable
 confinement: strict
 
 apps:
-  argos-translate: 
+  neuraleasel: 
     adapter: full
-    command: desktop-launch $SNAP/bin/argos-translate
+    command: desktop-launch $SNAP/bin/neuraleasel
     environment:
       DISABLE_WAYLAND: 1
     plugs:
@@ -57,7 +51,7 @@ parts:
       - xdg-user-dirs
       - fcitx-frontend-qt5
 
-  argos-translate:
+  neuraleasel:
     after: [desktop-qt5]
     plugin: python
     python-version: python3
@@ -73,17 +67,4 @@ parts:
       - python3-pyqt5
       - libc-bin
       - locales
-
-  model-files:
-    source: packages
-    plugin: dump
-    organize:
-      '*' : packages/
-
-plugs:
-  argos-packages:
-    interface: content
-    content: argos-packages
-    target: $SNAP
-    default-provider: argos-translate-base-langs
 
