@@ -216,7 +216,8 @@ class CascadeGaussianSmoothing(nn.Module):
             # Reshape to depthwise convolutional weight
             kernel = kernel.view(1, 1, *kernel.shape)
             kernel = kernel.repeat(3, *[1] * (kernel.dim() - 1))
-            kernel = kernel.to('cuda')
+            kernel = kernel.to('cpu')
+            # kernel = kernel.to('cuda')
             prepared_kernels.append(kernel)
 
         self.register_buffer('weight1', prepared_kernels[0])
