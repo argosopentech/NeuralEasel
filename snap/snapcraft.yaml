@@ -6,7 +6,7 @@ license: MIT
 summary: Open-source DeepDream generator
 description: |
   Easily generate your own deep dream images from a GUI.
-icon: snap/gui/icon.png
+icon: snap/gui/icon.svg
 compression: lzo
 confinement: strict
 
