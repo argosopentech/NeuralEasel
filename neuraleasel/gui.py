@@ -1,8 +1,11 @@
 from pathlib import Path
+import os
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+
+import deepdream
 
 class GUIWindow(QMainWindow):
     def __init__(self):
@@ -36,7 +39,16 @@ class GUIWindow(QMainWindow):
             self.input_image = filepath
 
     def dream(self):
-        pass
+        if self.input_image == None:
+            mb = QMessageBox()
+            mb.setWindowTitle('Select input image')
+            mb.setText('Please set input image')
+            mb.setIcon(QMessageBox.Warning)
+            mb.exec_()
+            return
+        path = Path.home() / 'NeuralEasel'
+        os.makedirs(path, exist_ok=True)
+        deepdream.gui_run(self.input_image, path)
 
 class GUIApplication:
     def __init__(self):

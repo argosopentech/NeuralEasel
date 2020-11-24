@@ -3,6 +3,6 @@ torch
 torchvision
 numpy
 scipy
-opencv-python
+opencv-python-headless
 imageio
 matplotlib
