@@ -11,12 +11,12 @@ from torch import nn
 import scipy.ndimage as nd
 
 
-from models.definitions.vggs import Vgg16, Vgg16Experimental
-from models.definitions.googlenet import GoogLeNet
-from models.definitions.resnets import ResNet50
-from models.definitions.alexnet import AlexNet
-from .constants import *
-from .device import device
+from neuraleasel.models.definitions.vggs import Vgg16, Vgg16Experimental
+from neuraleasel.models.definitions.googlenet import GoogLeNet
+from neuraleasel.models.definitions.resnets import ResNet50
+from neuraleasel.models.definitions.alexnet import AlexNet
+from neuraleasel.utils.constants import *
+from neuraleasel.utils.device import device
 
 
 #

@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-import deepdream
+from neuraleasel import deepdream
 
 class GUIWindow(QMainWindow):
     def __init__(self):
@@ -47,7 +47,6 @@ class GUIWindow(QMainWindow):
             mb.exec_()
             return
         path = Path.home() / 'NeuralEasel'
-        os.makedirs(path, exist_ok=True)
         deepdream.gui_run(self.input_image, path)
 
 class GUIApplication:
@@ -58,6 +57,10 @@ class GUIApplication:
         self.app.exec_()
 
 def main():
+    path = Path.home() / 'NeuralEasel'
+    os.makedirs(path, exist_ok=True)
+    models_path = path / 'models'
+    os.makedirs(models_path, exist_ok=True)
+    os.environ['TORCH_HOME'] = str(models_path)
     app = GUIApplication()
 
-main()

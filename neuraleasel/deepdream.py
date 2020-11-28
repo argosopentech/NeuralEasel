@@ -15,11 +15,11 @@ import torch
 import cv2 as cv
 
 
-import utils.utils as utils
-from utils.constants import *
-import utils.video_utils as video_utils
+import neuraleasel.utils.utils as utils
+from neuraleasel.utils.constants import *
+import neuraleasel.utils.video_utils as video_utils
 
-from utils.device import device
+from neuraleasel.utils.device import device
 
 # layer.backward(layer) <- original implementation did it like this it's equivalent to MSE(reduction='sum')/2
 def gradient_ascent(config, model, input_tensor, layer_ids_to_use, iteration):

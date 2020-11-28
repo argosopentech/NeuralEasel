@@ -6,9 +6,16 @@ license: MIT
 summary: Open-source DeepDream generator
 description: |
   Easily generate your own deep dream images from a GUI.
-icon: snap/gui/icon.svg
-compression: lzo
+icon: snap/gui/icon.png
 confinement: strict
+
+plugs:
+  neuraleasel-dir:
+    interface: personal-files
+    read:
+    - $HOME/NeuralEasel
+    write:
+    - $HOME/NeuralEasel
 
 apps:
   neuraleasel: 
@@ -22,6 +29,7 @@ apps:
       - opengl
       - wayland
       - x11
+      - neuraleasel-dir
        
 # From snapcraft-desktop-helpers
 # https://github.com/ubuntu/snapcraft-desktop-helpers

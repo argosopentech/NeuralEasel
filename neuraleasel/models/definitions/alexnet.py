@@ -7,7 +7,7 @@ from torchvision import models
 from torch.hub import download_url_to_file
 
 
-from utils.constants import SupportedPretrainedWeights
+from neuraleasel.utils.constants import SupportedPretrainedWeights
 
 
 class AlexNet(torch.nn.Module):
